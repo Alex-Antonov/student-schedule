@@ -50,4 +50,4 @@
 | Degree    |   Таблица словарь с допустимыми значениями званий и регалий преподавателей                                |
 | Schedule  |   Расписание занятий                                                                                      |
 
-
+![UC diagram](https://github.com/Alex-Antonov/student-schedule/blob/master/model.png)
