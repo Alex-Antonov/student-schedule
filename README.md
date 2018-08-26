@@ -29,3 +29,4 @@ TODO
     -добавление новых потоков;
     -формирование расписания;
 
+![UC diagram](https://github.com/Alex-Antonov/student-schedule/blob/master/UseCasesDiagram.xml)
