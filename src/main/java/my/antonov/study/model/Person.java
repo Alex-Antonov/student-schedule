@@ -1,13 +1,34 @@
 package my.antonov.study.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "person")
 public class Person {
 
+    @Id
+    private Long id;
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "second_name")
     private String secondName;
+
+    @Column(name = "last_name")
     private String lastName;
+
+    @Column
     private String phone;
+
+    @Column
     private String email;
+
     private PersonType personType;
+
     private User user;
 
     public Person() {
@@ -21,6 +42,14 @@ public class Person {
         this.email = email;
         this.personType = personType;
         this.user = user;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {

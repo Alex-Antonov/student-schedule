@@ -1,11 +1,21 @@
 package my.antonov.study.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.List;
 
+@Entity
+@Table(name = "tutor")
 public class Tutor {
 
+    @Id
+    private Long id;
+
     private Person person;
+
     private List<Subject> subjects;
+
     private Degree degree;
 
     public Tutor() {
@@ -15,6 +25,14 @@ public class Tutor {
         this.person = person;
         this.subjects = subjects;
         this.degree = degree;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Person getPerson() {

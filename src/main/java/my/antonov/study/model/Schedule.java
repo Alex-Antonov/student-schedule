@@ -1,15 +1,31 @@
 package my.antonov.study.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.DayOfWeek;
 import java.util.List;
 
+@Entity
+@Table(name = "schedule")
 public class Schedule {
 
+    @Id
+    private Long id;
+
+    @Column(name = "audience_number")
     private String audienceNumber;
+
+    @Column(name = "day")
     private DayOfWeek dayOfWeek;
+
     private ClassTime classTime;
+
     private List<Flow> flow;
+
     private Group group;
+
     private Tutor tutor;
 
     public Schedule() {
@@ -22,6 +38,14 @@ public class Schedule {
         this.flow = flow;
         this.group = group;
         this.tutor = tutor;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getAudienceNumber() {

@@ -1,10 +1,25 @@
 package my.antonov.study.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "student")
 public class Student {
 
+    @Id
+    private Long id;
+
     private Person person;
+
     private Group group;
+
+    @Column(name = "is_hostel_inh")
     private boolean isHostelInh;
+
+    @Column(name = "is_grants")
     private boolean isGrants;
 
     public Student() {
@@ -15,6 +30,14 @@ public class Student {
         this.group = group;
         this.isHostelInh = isHostelInh;
         this.isGrants = isGrants;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Person getPerson() {

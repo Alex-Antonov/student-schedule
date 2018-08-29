@@ -1,13 +1,28 @@
 package my.antonov.study.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.Year;
 
+@Entity
+@Table(name = "groups")
 public class Group {
 
+    @Id
+    private Long id;
+
+    @Column
     private String name;
-    private Flow flow;
+
+    @Column(name = "start_year")
     private Year startYear;
+
+    @Column(name = "end_year")
     private Year endYear;
+
+    private Flow flow;
 
     public Group() {
     }
@@ -17,6 +32,14 @@ public class Group {
         this.flow = flow;
         this.startYear = startYear;
         this.endYear = endYear;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
