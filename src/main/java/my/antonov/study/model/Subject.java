@@ -1,15 +1,14 @@
 package my.antonov.study.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "subject")
 public class Subject {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "subject_seq_gen")
+    @SequenceGenerator(name = "subject_seq_gen", sequenceName = "subject_id_seq", allocationSize = 1)
     private Long id;
 
     @Column

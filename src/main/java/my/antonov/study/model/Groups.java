@@ -1,14 +1,12 @@
 package my.antonov.study.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.Year;
+import java.util.List;
 
 @Entity
 @Table(name = "groups")
-public class Group {
+public class Groups {
 
     @Id
     private Long id;
@@ -17,17 +15,22 @@ public class Group {
     private String name;
 
     @Column(name = "start_year")
-    private Year startYear;
+    private int startYear;
 
     @Column(name = "end_year")
-    private Year endYear;
+    private int endYear;
 
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Student> students;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH, CascadeType.PERSIST})
+    @JoinColumn(name = "flow_id")
     private Flow flow;
 
-    public Group() {
+    public Groups() {
     }
 
-    public Group(String name, Flow flow, Year startYear, Year endYear) {
+    public Groups(String name, Flow flow, int startYear, int endYear) {
         this.name = name;
         this.flow = flow;
         this.startYear = startYear;
@@ -58,19 +61,19 @@ public class Group {
         this.flow = flow;
     }
 
-    public Year getStartYear() {
+    public int getStartYear() {
         return startYear;
     }
 
-    public void setStartYear(Year startYear) {
+    public void setStartYear(int startYear) {
         this.startYear = startYear;
     }
 
-    public Year getEndYear() {
+    public int getEndYear() {
         return endYear;
     }
 
-    public void setEndYear(Year endYear) {
+    public void setEndYear(int endYear) {
         this.endYear = endYear;
     }
 }

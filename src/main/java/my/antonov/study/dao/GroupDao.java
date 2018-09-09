@@ -1,10 +1,10 @@
 package my.antonov.study.dao;
 
-import my.antonov.study.model.Group;
+import my.antonov.study.model.Groups;
 
 import java.util.List;
 
 public interface GroupDao {
-    List<Group> findGroupByName(String name);
-    void add(Group group);
+    List<Groups> findGroupByName(String name);
+    void add(Groups group);
 }

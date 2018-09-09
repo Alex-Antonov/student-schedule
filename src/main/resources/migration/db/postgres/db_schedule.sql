@@ -1,7 +1,16 @@
-CREATE DATABASE db_schedule;
+/*
+DROP DATABASE IF EXISTS db_schedule;
+DROP SCHEMA IF EXISTS db_schedule;
+DROP USER IF EXISTS db_schedule;
+DROP ROLE IF EXISTS db_scedule;
 
-CREATE USER db_schedule WITH PASSWORD 'db_schedule';
+CREATE ROLE db_schedule WITH LOGIN PASSWORD 'db_schedule';
+ALTER ROLE db_schedule SUPERUSER;
+CREATE SCHEMA db_schedule AUTHORIZATION db_schedule;
+CREATE DATABASE db_schedule OWNER db_schedule;
 GRANT ALL PRIVILEGES ON DATABASE db_schedule TO db_schedule;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO db_schedule;
+*/
 
 CREATE TABLE users (
   id BIGINT NOT NULL PRIMARY KEY,
@@ -12,21 +21,16 @@ CREATE TABLE users (
 CREATE INDEX users_users_id_idx ON users(id);
 CREATE INDEX users_login_idx ON users(login);
 
-CREATE TABLE person_type(
-  id BIGINT NOT NULL PRIMARY KEY,
-  person_type VARCHAR(32) NOT NULL UNIQUE
-);
-
 CREATE INDEX person_type_id_idx ON person_type(id);
 
 CREATE TABLE person (
   id BIGINT NOT NULL PRIMARY KEY,
-  user_id BIGINT NOT NULL,
+  user_id BIGINT,
   first_name VARCHAR(64) NOT NULL,
   second_name VARCHAR(64) NOT NULL,
   last_name VARCHAR(64),
-  person_type BIGINT NOT NULL,
-  phone VARCHAR(16),
+  person_type VARCHAR(16),
+  phone VARCHAR(24),
   email VARCHAR(128) NOT NULL,
   FOREIGN KEY (person_type) REFERENCES person_type(id),
   FOREIGN KEY (user_id) REFERENCES users(id)

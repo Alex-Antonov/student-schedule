@@ -1,9 +1,6 @@
 package my.antonov.study.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -11,6 +8,8 @@ import java.sql.Timestamp;
 public class ClassTime {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "flow_seq_gen")
+    @SequenceGenerator(name = "flow_seq_gen", sequenceName = "flow_id_seq", allocationSize = 1)
     private Long id;
 
     @Column(name = "from_time")

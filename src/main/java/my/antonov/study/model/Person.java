@@ -1,15 +1,16 @@
 package my.antonov.study.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+//@DiscriminatorColumn(name = "person_type", discriminatorType = DiscriminatorType.STRING)
 @Table(name = "person")
 public class Person {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq_gen")
+    @SequenceGenerator(name = "person_seq_gen", sequenceName = "person_id_seq", allocationSize = 1)
     private Long id;
 
     @Column(name = "first_name")
@@ -27,14 +28,17 @@ public class Person {
     @Column
     private String email;
 
-    private PersonType personType;
+    @Column(name = "person_type")
+    private String personType;
 
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Person() {
     }
 
-    public Person(String firstName, String secondName, String lastName, String phone, String email, PersonType personType, User user) {
+    public Person(String firstName, String secondName, String lastName, String phone, String email, String personType, User user) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.lastName = lastName;
@@ -92,11 +96,11 @@ public class Person {
         this.email = email;
     }
 
-    public PersonType getPersonType() {
+    public String getPersonType() {
         return personType;
     }
 
-    public void setPersonType(PersonType personType) {
+    public void setPersonType(String personType) {
         this.personType = personType;
     }
 

@@ -1,9 +1,6 @@
 package my.antonov.study.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -11,18 +8,20 @@ import java.util.List;
 public class Flow {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "flow_seq_gen")
+    @SequenceGenerator(name = "flow_seq_gen", sequenceName = "flow_id_seq", allocationSize = 1)
     private Long id;
 
     @Column(name = "spec_name")
     private String specName;
 
-
-    private List<Group> groups;
+    @OneToMany(mappedBy = "flow", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Groups> groups;
 
     public Flow() {
     }
 
-    public Flow(String specName, List<Group> groups) {
+    public Flow(String specName, List<Groups> groups) {
         this.specName = specName;
         this.groups = groups;
     }
@@ -43,11 +42,11 @@ public class Flow {
         this.specName = specName;
     }
 
-    public List<Group> getGroups() {
+    public List<Groups> getGroups() {
         return groups;
     }
 
-    public void setGroups(List<Group> groups) {
+    public void setGroups(List<Groups> groups) {
         this.groups = groups;
     }
 }

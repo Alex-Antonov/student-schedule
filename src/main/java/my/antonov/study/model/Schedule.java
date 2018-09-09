@@ -1,9 +1,6 @@
 package my.antonov.study.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.DayOfWeek;
 import java.util.List;
 
@@ -20,18 +17,26 @@ public class Schedule {
     @Column(name = "day")
     private DayOfWeek dayOfWeek;
 
+    @OneToOne
+    @JoinColumn(name = "class_time_id")
     private ClassTime classTime;
 
+    @OneToMany
+    @JoinColumn(name = "flow_id")
     private List<Flow> flow;
 
-    private Group group;
+    @OneToOne
+    @JoinColumn(name = "group_id")
+    private Groups group;
 
+    @OneToOne
+    @JoinColumn(name = "tutor_id")
     private Tutor tutor;
 
     public Schedule() {
     }
 
-    public Schedule(String audienceNumber, DayOfWeek dayOfWeek, ClassTime classTime, List<Flow> flow, Group group, Tutor tutor) {
+    public Schedule(String audienceNumber, DayOfWeek dayOfWeek, ClassTime classTime, List<Flow> flow, Groups group, Tutor tutor) {
         this.audienceNumber = audienceNumber;
         this.dayOfWeek = dayOfWeek;
         this.classTime = classTime;
@@ -80,11 +85,11 @@ public class Schedule {
         this.flow = flow;
     }
 
-    public Group getGroup() {
+    public Groups getGroup() {
         return group;
     }
 
-    public void setGroup(Group group) {
+    public void setGroup(Groups group) {
         this.group = group;
     }
 
