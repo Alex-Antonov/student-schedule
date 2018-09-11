@@ -1,7 +1,7 @@
 package my.antonov.study.dao.impl;
 
-import my.antonov.study.dao.GroupDao;
-import my.antonov.study.model.Groups;
+import my.antonov.study.dao.TutorDao;
+import my.antonov.study.model.Tutor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,20 +10,27 @@ import javax.persistence.PersistenceException;
 import java.util.List;
 
 @Service
-public class GroupDaoImpl implements GroupDao {
+public class TutorDaoIml implements TutorDao {
 
     private EntityManager em;
 
     @Autowired
-    public GroupDaoImpl(EntityManager em) {
+    public TutorDaoIml(EntityManager em) {
         this.em = em;
     }
 
     @Override
-    public void add(Groups group) {
+    public List<Tutor> findTutorByName(String name) {
+        return em.createQuery("SELECT t FROM Tutor t WHERE t.firstName = :name")
+                .setParameter("name", name)
+                .getResultList();
+    }
+
+    @Override
+    public void add(Tutor tutor) {
         em.getTransaction().begin();
         try{
-            em.persist(group);
+            em.persist(tutor);
             em.getTransaction().commit();
         }  catch (PersistenceException e) {
             em.getTransaction().rollback();
@@ -32,12 +39,7 @@ public class GroupDaoImpl implements GroupDao {
     }
 
     @Override
-    public List<Groups> findGroupByName(String name) {
-        return em.createQuery("SELECT g FROM Groups g WHERE g.name = :n").setParameter("n", name).getResultList();
-    }
-
-    @Override
-    public List<Groups> findAll() {
-        return em.createQuery("SELECT g FROM Groups g").getResultList();
+    public List<Tutor> findAll() {
+        return em.createQuery("SELECT t FROM Tutor t").getResultList();
     }
 }

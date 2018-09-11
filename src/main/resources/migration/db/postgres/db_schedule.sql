@@ -59,9 +59,9 @@ CREATE TABLE groups(
   id BIGINT NOT NULL PRIMARY KEY,
   start_year INTEGER NOT NULL,
   end_year INTEGER NOT NULL,
-  floaw_id INTEGER NOT NULL,
+  flow_id INTEGER NOT NULL,
   name VARCHAR(16) NOT NULL,
-  FOREIGN KEY (floaw_id) REFERENCES flow(id)
+  FOREIGN KEY (flow_id) REFERENCES flow(id)
 );
 
 CREATE INDEX groups_id_idx ON groups(id);

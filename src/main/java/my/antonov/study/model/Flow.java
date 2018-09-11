@@ -15,7 +15,7 @@ public class Flow {
     @Column(name = "spec_name")
     private String specName;
 
-    @OneToMany(mappedBy = "flow", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "flow", cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Groups> groups;
 
     public Flow() {

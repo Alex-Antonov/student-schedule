@@ -9,6 +9,8 @@ import java.util.List;
 public class Groups {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "groups_seq_gen")
+    @SequenceGenerator(name = "groups_seq_gen", sequenceName = "groups_id_seq", allocationSize = 1)
     private Long id;
 
     @Column
@@ -20,10 +22,10 @@ public class Groups {
     @Column(name = "end_year")
     private int endYear;
 
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "group", cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Student> students;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "flow_id")
     private Flow flow;
 

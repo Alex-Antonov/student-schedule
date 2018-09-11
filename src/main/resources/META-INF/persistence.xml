@@ -22,7 +22,7 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <properties>
             <property name="hibernate.archive.autodetection" value="class" />
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL81Dialect" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL91Dialect" />
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
             <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/db_schedule" />
             <property name="hibernate.connection.username" value="db_schedule" />

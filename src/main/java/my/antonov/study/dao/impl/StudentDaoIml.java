@@ -3,18 +3,19 @@ package my.antonov.study.dao.impl;
 import my.antonov.study.dao.StudentDao;
 import my.antonov.study.model.Groups;
 import my.antonov.study.model.Student;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 import java.util.List;
 
-/**
- * Created by alex on 31.08.2018.
- */
+@Service
 public class StudentDaoIml implements StudentDao {
 
     private EntityManager em;
 
+    @Autowired
     public StudentDaoIml(EntityManager em) {
         this.em = em;
     }

@@ -7,4 +7,5 @@ import java.util.List;
 public interface GroupDao {
     List<Groups> findGroupByName(String name);
     void add(Groups group);
+    public List<Groups> findAll();
 }

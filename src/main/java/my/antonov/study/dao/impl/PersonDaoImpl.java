@@ -2,15 +2,19 @@ package my.antonov.study.dao.impl;
 
 import my.antonov.study.dao.PersonDao;
 import my.antonov.study.model.Person;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 import java.util.List;
 
+@Service
 public class PersonDaoImpl implements PersonDao {
 
     private EntityManager em;
 
+    @Autowired
     public PersonDaoImpl(EntityManager em) {
         this.em = em;
     }

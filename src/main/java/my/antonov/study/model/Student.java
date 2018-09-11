@@ -6,13 +6,6 @@ import javax.persistence.*;
 @DiscriminatorValue("STUD")
 @Table(name = "student")
 public class Student extends Person {
-//
-//    @Id
-//    private Long id;
-
-//    @OneToOne
-//    @JoinColumn(name = "id")
-//    private Person person;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "group_id")
@@ -33,28 +26,6 @@ public class Student extends Person {
         this.isHostelInh = isHostelInh;
         this.isGrants = isGrants;
     }
-//    public Student(Person person, Groups group, boolean isHostelInh, boolean isGrants) {
-//        //this.person = person;
-//        this.group = group;
-//        this.isHostelInh = isHostelInh;
-//        this.isGrants = isGrants;
-//    }
-
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-
-//    public Person getPerson() {
-//        return person;
-//    }
-//
-//    public void setPerson(Person person) {
-//        this.person = person;
-//    }
 
     public Groups getGroup() {
         return group;

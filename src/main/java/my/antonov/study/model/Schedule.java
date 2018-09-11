@@ -21,9 +21,9 @@ public class Schedule {
     @JoinColumn(name = "class_time_id")
     private ClassTime classTime;
 
-    @OneToMany
+    @OneToOne
     @JoinColumn(name = "flow_id")
-    private List<Flow> flow;
+    private Flow flow;
 
     @OneToOne
     @JoinColumn(name = "group_id")
@@ -36,7 +36,7 @@ public class Schedule {
     public Schedule() {
     }
 
-    public Schedule(String audienceNumber, DayOfWeek dayOfWeek, ClassTime classTime, List<Flow> flow, Groups group, Tutor tutor) {
+    public Schedule(String audienceNumber, DayOfWeek dayOfWeek, ClassTime classTime, Flow flow, Groups group, Tutor tutor) {
         this.audienceNumber = audienceNumber;
         this.dayOfWeek = dayOfWeek;
         this.classTime = classTime;
@@ -77,11 +77,11 @@ public class Schedule {
         this.classTime = classTime;
     }
 
-    public List<Flow> getFlow() {
+    public Flow getFlow() {
         return flow;
     }
 
-    public void setFlow(List<Flow> flow) {
+    public void setFlow(Flow flow) {
         this.flow = flow;
     }
 
