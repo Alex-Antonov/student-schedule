@@ -1,7 +1,11 @@
 package my.antonov.study.web.servlets;
 
+import com.google.common.collect.Lists;
+import my.antonov.study.dao.SubjectDao;
 import my.antonov.study.dao.TutorDao;
+import my.antonov.study.model.Subject;
 import my.antonov.study.model.Tutor;
+import my.antonov.study.web.beans.SubjectListBean;
 import my.antonov.study.web.beans.TutorListBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +24,9 @@ public class TutorListController {
     @Autowired
     private TutorDao tutorDao;
 
+    @Autowired
+    private SubjectDao subjectDao;
+
     @RequestMapping(method = RequestMethod.GET, value = "/tutor/all")
     public String getStudentList(ModelMap model) throws ServletException, IOException {
         List<Tutor> tutors = tutorDao.findAll();
@@ -33,11 +40,11 @@ public class TutorListController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/tutor/add")
     public String addStudentShowForm(ModelMap model) {
-//        List<Groups> groups = groupDao.findAll();
-//
-//        GroupListBean bean = new GroupListBean(groups);
-//
-//        model.put("groupBean", bean);
+        List<Subject> subjects = subjectDao.findAll();
+
+        SubjectListBean bean = new SubjectListBean(subjects);
+
+        model.put("subjBean", bean);
 
         return "tutor-add";
     }
@@ -50,8 +57,11 @@ public class TutorListController {
                                 @RequestParam("phone") String phone,
                                 @RequestParam("degree") String degree,
                                 @RequestParam("experience") Integer experience,
+                                @RequestParam(value = "subjects", required = false) String[] subjects,
                                 ModelMap model) throws ServletException, IOException {
         String type = "TUTOR";
+
+        List<Subject> subjectList = null;
 
         if (firstName == null) {
             throw new IllegalArgumentException("firstName is missing");
@@ -71,8 +81,12 @@ public class TutorListController {
         if (experience == null) {
             throw new IllegalArgumentException("experience is missing");
         }
+        if(subjects != null) {
+            subjectList = subjectDao.findSubjects(Lists.newArrayList(subjects));
+        }
 
-        Tutor tutor = new Tutor(firstName, secondName, lastName, phone, email, type, null, null, degree, experience);
+        Tutor tutor = new Tutor(firstName, secondName, lastName, phone, email, type, null, subjectList, degree, experience);
+
         tutorDao.add(tutor);
 
         return getStudentList(model);

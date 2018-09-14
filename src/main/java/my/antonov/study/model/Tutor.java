@@ -4,12 +4,12 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@DiscriminatorValue("TUT")
+@DiscriminatorValue("TUTOR")
 @Table(name = "tutor")
 public class Tutor extends Person {
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "tutor_subject", catalog = "db_schedule", joinColumns = {
+    @JoinTable(name = "tutor_subject"/*, catalog = "db_schedule"*/, joinColumns = {
             @JoinColumn(name = "tutor_id", nullable = false, updatable = false) },
             inverseJoinColumns = { @JoinColumn(name = "subject_id",
                     nullable = false, updatable = false) })

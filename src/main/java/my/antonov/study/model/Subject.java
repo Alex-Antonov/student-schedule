@@ -1,6 +1,8 @@
 package my.antonov.study.model;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "subject")
@@ -14,11 +16,19 @@ public class Subject {
     @Column
     private String name;
 
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(name = "tutor_subject", catalog = "db_schedule", joinColumns = {
+//            @JoinColumn(name = "tutor_id", nullable = false, updatable = false) },
+//            inverseJoinColumns = { @JoinColumn(name = "subject_id",
+//                    nullable = false, updatable = false) })
+//    private List<Tutor> tutors;
+
     public Subject() {
     }
 
     public Subject(String name) {
         this.name = name;
+//        this.tutors = tutors;
     }
 
     public Long getId() {

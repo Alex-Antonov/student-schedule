@@ -17,6 +17,9 @@
     <a href="/group/all">Группы</a>
 </p>
 <p>
+    <a href="/subject/all">Дисциплины</a>
+</p>
+<p>
     <a href="/schedule">Расписание</a>
 </p>
 </body>

@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="subjBean" type="my.antonov.study.web.beans.SubjectListBean" scope="request"/>
 <html>
 <head>
     <title>Новый преподаватель</title>
@@ -27,6 +29,15 @@
     </p>
     <p>
         Стаж: <input type="text" name="experience">
+    </p>
+    <p>
+        Дисциплины:
+
+        <select name="subjects" multiple="multiple">
+            <c:forEach items="${subjBean.subjects}" var="subj">
+                <option value="${subj.name}">${subj.name}</option>
+            </c:forEach>
+        </select>
     </p>
     <p>
         <input type="submit" />

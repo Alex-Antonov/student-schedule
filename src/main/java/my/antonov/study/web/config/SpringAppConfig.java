@@ -16,10 +16,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 @Configuration
-@ComponentScan(basePackages = "my.antonov.study" //,
-//        excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX,
-//                pattern = "ru\\.levelp\\.example\\.web.+")
-)
+@ComponentScan(basePackages = "my.antonov.study")
 @EnableWebMvc
 public class SpringAppConfig extends WebMvcConfigurerAdapter {
 

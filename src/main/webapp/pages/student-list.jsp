@@ -24,17 +24,24 @@
                 <th>Группа</th>
             </tr>
             <c:forEach items="${studBean.students}" var="stud">
-                <tr>
-                    <td><c:out value="${stud.secondName}" escapeXml="false"/></td>
-                    <td><c:out value="${stud.firstName}" escapeXml="true"/></td>
-                    <td><c:out value="${stud.lastName}" escapeXml="false"/></td>
-                    <td><c:out value="${stud.email}" escapeXml="false"/></td>
-                    <td><c:out value="${stud.phone}" escapeXml="false"/></td>
-                    <td><c:out value="${stud.hostelInh ? 'Да' : 'Нет'}" escapeXml="false"/></td>
-                    <td><c:out value="${stud.grants ? 'Да' : 'Нет'}" escapeXml="false"/></td>
-                    <td><c:out value="${stud.group == null ? '-' : stud.group.flow.specName}" escapeXml="false"/></td>
-                    <td><c:out value="${stud.group.name == null ? '-' : stud.group.name}" escapeXml="false"/></td>
-                </tr>
+
+                    <tr link>
+                        <td>
+                            <a href="/students/${stud.id}">
+                                <c:out value="${stud.secondName}" escapeXml="false"/>
+                            </a>
+                        </td>
+                        <td><c:out value="${stud.firstName}" escapeXml="true"/></td>
+                        <td><c:out value="${stud.lastName}" escapeXml="false"/></td>
+                        <td><c:out value="${stud.email}" escapeXml="false"/></td>
+                        <td><c:out value="${stud.phone}" escapeXml="false"/></td>
+                        <td><c:out value="${stud.hostelInh ? 'Да' : 'Нет'}" escapeXml="false"/></td>
+                        <td><c:out value="${stud.grants ? 'Да' : 'Нет'}" escapeXml="false"/></td>
+                        <td><c:out value="${stud.group == null ? '-' : stud.group.flow.specName}"
+                                   escapeXml="false"/></td>
+                        <td><c:out value="${stud.group.name == null ? '-' : stud.group.name}" escapeXml="false"/></td>
+                    </tr>
+
             </c:forEach>
             </tbody>
         </table>
